@@ -21,5 +21,7 @@ Data is processed using python --> communicate to Javascript web app and display
 
 Ways of sending data to dashboard
 
-- MQTT
-- GET POST REQUEST
+- Flask
+- SocketIO (WebSocket)
+- MQTT (Broker)
+- HTMl (rendering web dashboard)

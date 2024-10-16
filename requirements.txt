@@ -1,2 +1,4 @@
-paho-mqtt<2.0.0
-flask
+paho-mqtt=2.0.0
+flask=1.1.2
+bme680
+Werkzeug=2.0.3

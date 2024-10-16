@@ -4,42 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enviro Watch</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        var socket = io()
+
+        socket.on('send_data', function(data) {
+                document.getElementById("temp").innerHTML = data.temp
+                document.getElementById("humidity").innerHTML = data.humidity
+                document.getElementById("pressure").innerHTML = data.pressure
+                console.log("Received data:" + data)
+            });
+        
+        socket.on('connect', function() {
+                console.log("Connected")
+            });
+        
+        socket.on('disconnect', function(msg) {
+                console.log("Disconnected")
+            });
+
+    </script>
 </head>
 <body>
 
     <div class="container">
 
-        <div class="component">
-            <h1 class="sensor-title">Temperature</h1>
-            <h2 class="sensor-value">val</h2>
+        <div id="component">
+            <h1 class="sensor-title">Temperature (C)</h1>
+            <h2 id="temp"></h2>
         </div>
 
-        <div class="component">
-            <h1 class="sensor-title">Gas 1</h1>
-            <h2 class="sensor-value">val</h2>
+        <div id="component">
+            <h1 class="sensor-title">Humidity (%)</h1>
+            <h2 id="humidity"></h2>
         </div>
 
-        <div class="component"></div>
-            <h1 class="sensor-title">Gas 2</h1>
-            <h2 class="sensor-value">val</h2>
+        <div id="component">
+            <h1 class="sensor-title">Pressure (hPA)</h1>
+            <h2 id="pressure"></h2>
         </div>
 
-        <div class="component"></div>
-            <h1 class="sensor-title">Gas 3</h1>
-            <h2 class="sensor-value">val</h2>
-        </div>
-
-        <div class="component"></div>
-            <h1 class="sensor-title">Gas 3</h1>
-            <h2 class="sensor-value">val</h2>
-        </div>
-
-        <div class="component"></div>
-            <h1 class="sensor-title">Humidity</h1>
-            <h2 class="sensor-value">val</h2>
-        </div>
 
     </div>
-
 </body>
 </html>

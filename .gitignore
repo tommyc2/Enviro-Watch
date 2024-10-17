@@ -1,0 +1,15 @@
+# Ignore these files
+
+__pycache__/
+.python
+env/
+venv/
+.env
+.cache
+.venv
+.env.*
+downloads/
+*.log
+.idea/
+.vscode/
+*.iml/

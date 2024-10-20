@@ -21,17 +21,6 @@ def find_database():
 
 find_database()
 
-#average_temp = db.collection.aggregate([
- #   {
- #       "$group": {
- #           "_id": None,
- #           "avgTemp": {"$avg": "$temp"}
- #       }
- #   }
-#])
-
-#for i in average_temp:
-#    print(i["avgTemp"])
 
 
 

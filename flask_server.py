@@ -24,7 +24,9 @@ def send_data_to_dashboard(temp,humidity,pressure,air_quality):
 def index():
     return render_template("index.html")
 
-if __name__ == '__main__':
+try:
     send_data_thread = threading.Thread(target=send_data_to_dashboard, daemon=True)
     send_data_thread.start()
-    socketio.run(app, debug=True, host='0.0.0.0', port=5000) 
+    socketio.run(app, debug=True, host='0.0.0.0', port=5000)
+except Exception as e:
+    print("Error:", e)

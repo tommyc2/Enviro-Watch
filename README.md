@@ -1,31 +1,47 @@
 # Enviro-Watch
-A smart IoT device that monitors air quality, gas levels &amp; temperature. It measures room temperature, pressure, Gas levels (carbon dioxide etc.).
+A smart IoT device that monitors air quality & gas levels. It measures temperature, humidity, pressure & VOC (Volatile Organic Compounds).
 
+The following technologies were used:
 
-## Useful Links:
-MQ-2 Guide --> https://docs.sunfounder.com/projects/umsk/en/latest/05_raspberry_pi/pi_lesson04_mq2.html
+- Python with Flask
+- SocketIO
+- MongoDB Atlas
+- BME680 3.3V Sensor
+- HTML/CSS
+- Vanilla JavaScript
+- IFTTT/Twilio
 
-## Sensors/Devices needed
+The user receives a notification on their phone/device when gas levels reach a certain threshold (and beyond).
 
-- MQ-2 or any MQ Sensor (Python package: gas-detection)
-- BME sensor (for temperature, humidity, pressure etc.)
-- ADC (analog to digital)
-- Raspberry Pi
-- LCD Screen (I2C)
-- Breadboard
+In order to run this:
 
-## Plans
+### 1. Setup Board Layout 
 
-Process data using python --> send to mongodb online database
-Web app requests data from DB and displays the data on basic web dashboard
+Connect the Raspberry Pi to the BME680 sensor using jumper wires and a breadboard. This project works with the 'Environment Click' sensor. Visit: https://github.com/pimoroni/bme680-python for more info
+
+### 1. Install necessary libraries
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Create .ENV file and add your MongoDB Cluster URL & necessary keys
+Create a .env file to store your environment variables (auth keys, mongodb cluster password etc.)
+
+### 3. Execute script
+Execute the script, typing the following command in your machine's terminal:
+
+```bash
+python3 main.py
+```
 
 or 
 
-Data is processed using python --> communicate to Javascript web app and display data on ReactJS dashboard/IoT platform
+```bash
+chmod u+x main.py
+./main.py
+```
 
-Ways of sending data to dashboard
 
-- Flask
-- SocketIO (WebSocket)
-- MQTT (Broker)
-- HTMl (rendering web dashboard)
+
+

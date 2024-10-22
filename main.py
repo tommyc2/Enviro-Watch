@@ -5,6 +5,7 @@ from flask import Flask
 from flask import render_template
 from flask_socketio import SocketIO
 import time
+from database import save_to_database
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -112,7 +113,11 @@ def setup_sensor():
                 print(f"T: {temperature} C, Humidity: {humidity}% , Pressure {pressure} hPa, Gas resistance: {gas_levels} ohms")
                 print("------------------------------------------")
 
+                # Emit data on web socket
                 socketio.emit("send_data", {"temp": temperature,"humidity": humidity,"pressure": pressure,"air_quality": air_quality_rating })
+
+                # Save data to MongoDB Atlas Cluster
+                save_to_database(temperature,humidity,pressure,air_quality_rating)
 
     except Exception as error:
         print(error)

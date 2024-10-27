@@ -1,6 +1,10 @@
 from pymongo.mongo_client import MongoClient
+from dotenv import load_dotenv
+import os
 
-password = "PW GOES HERE"
+load_dotenv()
+
+password = os.getenv("CLUSTER_PW")
 uri = f"mongodb+srv://tcmedion:{password}@mycluster.m9wolg3.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster"
 
 client = MongoClient(uri)
@@ -26,7 +30,7 @@ def save_to_database(temp,hum,pressure,air):
         }
     )
 
-
+find_database()
 
 
 

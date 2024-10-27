@@ -6,13 +6,30 @@ from flask import render_template
 from flask_socketio import SocketIO
 import time
 from database import save_to_database
+from dotenv import load_dotenv
+import os
+import requests
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
+if (load_dotenv()):
+    print("Environment variable imported!")
+else:
+    print("Failed to import environment variable")
+
+event_name = "air_quality_is_bad"
+webhook_key = os.getenv("IFTTT_WEBHOOK_KEY")
+url = f"https://maker.ifttt.com/trigger/{event_name}/with/key/{webhook_key}"
+
 @app.route('/')
 def index():
     return render_template("index.html")
+
+def send_ifttt(data):
+    payload = { "value1": data }
+    response = requests.post(url, json=payload)
+    print(response.status_code)
 
 def calculate_air_quality(score):
     if (score > 90):
@@ -29,7 +46,7 @@ def calculate_air_quality(score):
         return "Dangerous"
         
 
-def setup_sensor():
+def main():
     try:
         sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
     except (RuntimeError, IOError):
@@ -105,7 +122,7 @@ def setup_sensor():
                 gas_levels = round(gas,2) # ohms
                 air_quality_rating = calculate_air_quality(round(air_quality_score,2)) # returns string indicating quality level
                 
-                time.sleep(2)
+                time.sleep(3)
 
                 # Print values to terminal
                 print("------------------------------------------")
@@ -115,6 +132,10 @@ def setup_sensor():
 
                 # Emit data on web socket
                 socketio.emit("send_data", {"temp": temperature,"humidity": humidity,"pressure": pressure,"air_quality": air_quality_rating })
+                
+                # If air quality reading bad, send SMS to alert user
+                if (air_quality_rating == "Poor") or (air_quality_rating == "Very Poor") or (air_quality_rating == "Dangerous"):
+                    send_ifttt(air_quality_rating)
 
                 # Save data to MongoDB Atlas Cluster
                 save_to_database(temperature,humidity,pressure,air_quality_rating)
@@ -124,8 +145,8 @@ def setup_sensor():
 
 @app.before_first_request
 def handleSensorSetup():
-    sensor_thread = threading.Thread(target=setup_sensor, daemon=True)
-    sensor_thread.start()
+    main_thread = threading.Thread(target=main, daemon=True)
+    main_thread.start()
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, host='0.0.0.0', port=5000)

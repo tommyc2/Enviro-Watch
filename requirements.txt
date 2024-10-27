@@ -4,3 +4,7 @@ bme680
 Werkzeug=2.0.3
 os
 subprocess
+requests
+threading
+dotenv
+pymongo

@@ -1,4 +1,6 @@
-# Enviro-Watch
+<img src="https://github.com/user-attachments/assets/0ef59bc8-9500-4e6c-a5c7-156d4eddf026" alt="LOGO" width="250" height="250">
+
+# EnviroWatch
 A smart IoT device that monitors air quality & gas levels. It measures temperature, humidity, pressure & VOC (Volatile Organic Compounds).
 
 The following technologies were used:

@@ -84,7 +84,9 @@ def main():
         print('Gas baseline: {0} Ohms, humidity baseline: {1:.2f} %RH\n'.format(
             gas_baseline,
             hum_baseline))
-
+        
+        # Calculations for Air Quality (IAQ)
+        # Source: bme680-python library --> indoor-air-quality
         while True:
             if sensor.get_sensor_data() and sensor.data.heat_stable:
                 gas = sensor.data.gas_resistance

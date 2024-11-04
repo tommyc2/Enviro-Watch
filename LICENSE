@@ -20,11 +20,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Third-Party Libraries
+### Third-Party Libraries
 
-This project uses the **pimoroni/bme680-python** library, which is licensed under the MIT License. The following license applies to the pimoroni/bme680-python library only:
+This project uses the 'pimoroni/bme680-python' library, which is licensed under the MIT License. The following license applies to the pimoroni/bme680-python library only:
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------
 
 ### MIT License for BME680-Python Library
 

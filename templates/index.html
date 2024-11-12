@@ -19,12 +19,14 @@
                 document.getElementById("pressure").innerHTML = data.pressure
                 document.getElementById("air_quality").innerHTML = data.air_quality
 
-                if (data.air_quality === "Excellent" || data.air_quality === "Good") {
-                    document.getElementById("air_quality").style.backgroundColor = "green"
+                if (data.air_quality === "Excellent" || data.air_quality === "Good")
+                {
+                    document.getElementById("air_quality").style.backgroundColor = "green" 
                 }
-
-                if (data.air_quality === "Excellent" || data.air_quality === "Good") { document.getElementById("air_quality").style.backgroundColor = "green" }
-                else if (data.air_quality === "Okay") { document.getElementById("air_quality").style.backgroundColor = "orange" }
+                else if (data.air_quality === "Okay")
+                {
+                    document.getElementById("air_quality").style.backgroundColor = "orange" 
+                }
                 else { document.getElementById("air_quality").style.backgroundColor = "red" }
                 
                 console.log("Received data:" + data)

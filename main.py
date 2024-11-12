@@ -134,10 +134,10 @@ def main():
 
                 # Emit data on web socket
                 socketio.emit("send_data", {"temp": temperature,"humidity": humidity,"pressure": pressure,"air_quality": air_quality_rating })
-                
+
                 # If air quality reading bad, send SMS to alert user
-                if (air_quality_rating == "Poor") or (air_quality_rating == "Very Poor") or (air_quality_rating == "Dangerous"):
-                    send_ifttt(air_quality_rating)
+                #if (air_quality_rating == "Poor") or (air_quality_rating == "Very Poor") or (air_quality_rating == "Dangerous"):
+                 #   send_ifttt(air_quality_rating)
 
                 # Save data to MongoDB Atlas Cluster
                 save_to_database(temperature,humidity,pressure,air_quality_rating)

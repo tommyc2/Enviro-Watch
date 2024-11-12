@@ -4,9 +4,7 @@ import os
 
 load_dotenv()
 
-password = os.getenv("CLUSTER_PW")
-uri = f"mongodb+srv://tcmedion:{password}@mycluster.m9wolg3.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster"
-
+uri = os.getenv("DB")
 client = MongoClient(uri)
 
 db = client.get_database("EnviroWatch")
@@ -30,7 +28,7 @@ def save_to_database(temp,hum,pressure,air):
         }
     )
 
-find_database()
+#find_database()
 
 
 

@@ -1,5 +1,5 @@
-name: Test
-run-name: Deploying Enviro-Watch!
+name: Build
+run-name: Building Enviro-Watch!
 on: [push]
 jobs:
   build:
@@ -7,13 +7,14 @@ jobs:
     steps:
       - name: Updating system...
         run: sudo apt update && sudo apt upgrade
+        working-directory: ~/Enviro
       - name: "Cloning Repository..."
-        run: ls
+        uses: actions/checkout@v4.2.2
       - name: Installing dependencies...
-        run:  |
+        run: |
           chmod +x install.sh
+          ./install.sh
           sudo apt-get install python3 -y
-          sudo apt-get install python3-pip --yes
-          ls -l
+          sudo apt-get install python3-pip --yes     
 
         

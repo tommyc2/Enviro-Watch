@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-run-name: Deloying Enviro-Watch!
+name: Test
+run-name: Deploying Enviro-Watch!
 on: [push]
 jobs:
   build:
@@ -8,7 +8,7 @@ jobs:
       - name: Updating system...
         run: sudo apt update && sudo apt upgrade
       - name: "Cloning Repository..."
-        uses: actions/checkout@v4.2.2
+        run: ls
       - name: Installing dependencies...
         run:  |
           chmod +x install.sh

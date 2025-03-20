@@ -7,9 +7,6 @@ jobs:
     steps:
       - name: Updating system...
         run: sudo apt update && sudo apt upgrade
-        working-directory: ~/Enviro
-      - name: "Cloning Repository..."
-        uses: actions/checkout@v4.2.2
       - name: Installing dependencies...
         run: |
           chmod +x install.sh
